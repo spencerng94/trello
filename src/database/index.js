@@ -1,19 +1,29 @@
-// import credentials from './credentials.js';
+const credentials = require('./credentials.js');
+const uri = `mongodb+srv://spencer:${credentials}@cluster0.ahwfc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const MongoClient = require('mongodb').MongoClient;
 
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = `mongodb+srv://spencer:${credentials}@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`;
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
+// var url = "mongodb://localhost:27017/trello";
+
+var mongoose = require('mongoose');
+// const database = mongoose.connect('mongodb://localhost/trello', { 
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
 // });
 
 
-const mongoose = require('mongoose');
-// const mongoUri = 'mongodb://172.17.0.2/main-product';
-const mongoUri = 'mongodb://localhost/main-product';
+// Connection URL
+const url = 'mongodb://localhost:27017';
 
-const db = mongoose.connect(mongoUri, {useMongoClient:true});
+// Database Name
+const dbName = 'trello';
 
-module.exports = db;
+// Use connect method to connect to the server
+const database = MongoClient.connect(url, function(err, client) {
+  console.log("Connected successfully to server");
+
+  const db = client.db(dbName);
+
+  client.close();
+});
+
+module.exports = database;
