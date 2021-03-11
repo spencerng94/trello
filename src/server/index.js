@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var router = express.Router();
 // const db = require('../database/index.js');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -19,4 +19,4 @@ app.get('/api/cards', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
-  });
+});
