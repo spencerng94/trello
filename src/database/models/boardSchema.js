@@ -7,8 +7,10 @@ var boardSchema = new Schema({
   board_name: {type: String, required: true},
   created_date: Date,
   updated_date: Date,
-  _user: { type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  _lists: [{type: mongoose.Schema.Types.ObjectId, ref:'List', required: true }]
+  _lists: {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref:'List', 
+      required: true }
 });
 
 var Board = mongoose.model('Board', boardSchema);

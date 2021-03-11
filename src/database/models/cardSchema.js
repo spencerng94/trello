@@ -7,7 +7,6 @@ var cardSchema = new Schema({
   card_name: {type: String, required: true},
   created_date: Date,
   updated_date: Date,
-  _list: {type: Schema.Types.ObjectId, ref:'List'}
 });
 
 
