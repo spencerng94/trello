@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
+import dummyReducer from './dummyReducer.js';
 
-import {
+// import {
 
-} from '../actions/index.js';
+// } from '../actions/index.js';
 
 // import { changeReducers } from './changeReducers.js';
 // import { getReducers } from './getReducers.js';
@@ -14,5 +15,5 @@ export const initialState = {
 }
 
 export default combineReducers({
-    changeReducers, getReducers
+    dummyReducer
 })
