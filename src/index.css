@@ -17,3 +17,8 @@ code {
   display: flex;
   padding: 10px;
 }
+
+.single-list {
+  width: 272px;
+  margin: 4px;
+}

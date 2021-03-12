@@ -26,4 +26,4 @@ const database = MongoClient.connect(url, function(err, client) {
   client.close();
 });
 
-module.exports = database;
+module.exports = { database, url };

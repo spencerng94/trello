@@ -9,7 +9,6 @@ import dummyReducer from './dummyReducer.js';
 // import { getReducers } from './getReducers.js';
 
 export const initialState = {
-    board: [],
     lists: [],
     cards: []
 }

@@ -5,8 +5,9 @@ var Schema = mongoose.Schema;
 var cardSchema = new Schema({
   card_id: Number,
   card_name: {type: String, required: true},
-  created_date: Date,
-  updated_date: Date,
+  position: Number
+  // created_date: Date,
+  // updated_date: Date,
 });
 
 

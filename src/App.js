@@ -18,20 +18,6 @@ class App extends React.Component {
             <NavBar></NavBar>
             <BoardHeader></BoardHeader>
             <Lists></Lists>
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Trello Clone
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
         </div>
     );
   }

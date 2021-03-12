@@ -14,6 +14,9 @@ const Lists = () => {
                             return <List listName={listName}/>
                         })
                     }
+                    <div className ="single-list">
+                        Add Another List
+                    </div>
                 </div>
             </ul>
         </div>

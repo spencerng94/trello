@@ -6,11 +6,11 @@ var listSchema = new Schema({
   list_id: Number,
   list_name: {type: String, required: true},
   position: Number,
-  created_date: Date,
-  updated_date: Date,
+  // created_date: Date,
+  // updated_date: Date,
   _cards: {
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Board'
+    ref: 'Card'
   }
 });
 
