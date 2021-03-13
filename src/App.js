@@ -6,7 +6,7 @@ import NavBar from './navigation/navigationBar.jsx';
 import BoardHeader from './components/boardHeader.jsx';
 import Lists from './components/Lists.jsx';
 import { getLists } from './redux/actions/getActions.js';
-import { deleteList } from './redux/actions/changeActions.js';
+import { deleteList, addList, editList} from './redux/actions/changeActions.js';
 import store from './redux/store/index.js';
 
 class App extends React.Component {
@@ -17,7 +17,9 @@ class App extends React.Component {
       cards: []
     };
     this.onGetLists = this.onGetLists.bind(this);
+    this.handleAddList = this.handleAddList.bind(this);
     this.handleDeleteList = this.handleDeleteList.bind(this);
+    this.handleEditList = this.handleEditList.bind(this);
   }
 
   onGetLists() {
@@ -32,9 +34,18 @@ class App extends React.Component {
     });
   }
 
+  handleAddList(newListId) {
+    console.log(newListId, 'line 37');
+    this.props.addList(newListId);
+  }
+
   handleDeleteList(listId) {
-    console.log(listId, 'line 36');
     this.props.deleteList(listId);
+  }
+
+  handleEditList(listId, newName) {
+    console.log(listId, newName, 'line 47777')
+    this.props.editList(listId, newName);
   }
 
   componentDidMount() {
@@ -49,7 +60,7 @@ class App extends React.Component {
         <div className="App">
             <NavBar/>
             <BoardHeader/>
-            <Lists lists={lists} handleDeleteList={this.handleDeleteList}/>
+            <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList}/>
         </div>
     );
   }
@@ -62,4 +73,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, { getLists, deleteList })(App);
+export default connect(mapStateToProps, { getLists, deleteList, addList, editList })(App);
