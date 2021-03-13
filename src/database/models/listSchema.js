@@ -9,10 +9,10 @@ var listSchema = new mongoose.Schema({
   position: Number,
   // created_date: Date,
   // updated_date: Date,
-  _cards: {
+  _cards: [{
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Card'
-  }
+  }]
 });
 
 var List = mongoose.model('List', listSchema);
