@@ -1,4 +1,3 @@
-import React from 'react';
 import LeftNavBar from './leftNavigationBar.jsx';
 import RightNavBar from './rightNavigationBar.jsx';
 

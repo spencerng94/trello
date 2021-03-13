@@ -22,3 +22,12 @@ code {
   width: 272px;
   margin: 4px;
 }
+
+.btn-close {
+  margin-left: 50px;
+}
+
+.list-header {
+  display: flex;
+  
+}

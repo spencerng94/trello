@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema;
 
 // created schema for List
-var listSchema = new Schema({
+var listSchema = new mongoose.Schema({
   list_id: Number,
   list_name: {type: String, required: true},
   position: Number,

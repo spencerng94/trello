@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // created schema for Card
-var cardSchema = new Schema({
+var cardSchema = new mongoose.Schema({
   card_id: Number,
   card_name: {type: String, required: true},
   position: Number
