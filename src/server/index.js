@@ -177,6 +177,30 @@ app.delete("/api/cards/:id", async (request, response) => {
     }
 });
 
+// Patch List Name
+app.patch("/api/cards/:id", async (request, response) => {
+
+    console.log(request.body, 'line 183');
+    // let currentId = parseInt(request.params.id);
+    let updateQuery = {
+        list_id: currentId
+    }
+    let updateObject = {
+        list_id: currentId,
+        list_name: newName
+    }
+
+    console.log(updateObject, 'line 92')
+
+    try {
+        var result = await List.updateOne(updateQuery, updateObject);
+        console.log('result from patch:', result);
+        response.send(result);
+    } catch (error) {
+        console.log(error, 'line 55')
+        response.status(500).send(error);
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

@@ -3,8 +3,7 @@ import List from './List.jsx';
 import store from '../redux/store/index.js';
 
 const Lists = (props) => {
-    let { lists, handleDeleteList, handleAddList, handleEditList, handleAddCard, handleDeleteCard} = props;
-    console.log(store.getState().getReducers.lists, 'line 9')
+    let { lists, handleDeleteList, handleAddList, handleEditList, handleAddCard, handleDeleteCard, handleEditCard} = props;
     let currentLists = store.getState().getReducers.lists;
 
     if (currentLists.length > 0) {
@@ -37,7 +36,7 @@ const Lists = (props) => {
                 <div className="flex-container">
                     {
                         lists.map((listElement) => {
-                            return <List listName={listElement.list_name} listId={listElement.list_id} listPosition={listElement.list_position} handleDeleteList={handleDeleteList} handleEditList={handleEditList} handleAddCard={handleAddCard} handleDeleteCard={handleDeleteCard}/>
+                            return <List listName={listElement.list_name} listId={listElement.list_id} listPosition={listElement.list_position} handleDeleteList={handleDeleteList} handleEditList={handleEditList} handleAddCard={handleAddCard} handleDeleteCard={handleDeleteCard} handleEditCard={handleEditCard}/>
                         })
                     }
                     <div className ="single-list" onClick={onClickHandler}>

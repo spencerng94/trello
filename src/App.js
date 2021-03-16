@@ -6,7 +6,7 @@ import NavBar from './navigation/navigationBar.jsx';
 import BoardHeader from './components/boardHeader.jsx';
 import Lists from './components/Lists.jsx';
 import { getLists, getCards } from './redux/actions/getActions.js';
-import { deleteList, addList, editList, addCard, deleteCard } from './redux/actions/changeActions.js';
+import { deleteList, addList, editList, addCard, deleteCard, editCard } from './redux/actions/changeActions.js';
 import store from './redux/store/index.js';
 import unsubscribe from './redux/store/index.js';
 
@@ -24,6 +24,7 @@ class App extends React.Component {
     this.handleEditList = this.handleEditList.bind(this);
     this.handleAddCard = this.handleAddCard.bind(this);
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
+    this.handleEditCard = this.handleEditCard.bind(this);
   }
 
   onGetCards() {
@@ -48,13 +49,15 @@ class App extends React.Component {
   }
 
   handleAddCard(listId, lastCardId, lastPosition, newCardName) {
-    console.log(lastCardId, 'line 50');
     this.props.addCard(listId, lastCardId, lastPosition, newCardName);
   }
 
   handleDeleteCard(cardId, listId) {
-    console.log('made it here line 56')
     this.props.deleteCard(cardId, listId);
+  }
+
+  handleEditCard(cardId, listId, newCardTitle) {
+    console.log('made it here line 61');
   }
 
   componentDidMount() {
@@ -70,7 +73,7 @@ class App extends React.Component {
         <div className="App">
             <NavBar/>
             <BoardHeader/>
-            <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList} handleAddCard={this.handleAddCard} handleDeleteCard={this.handleDeleteCard}/>
+            <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList} handleAddCard={this.handleAddCard} handleDeleteCard={this.handleDeleteCard} handleEditCard={this.handleEditList}/>
         </div>
     );
   }
@@ -91,4 +94,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, { getLists, deleteList, addList, editList, getCards, addCard, deleteCard })(App);
+export default connect(mapStateToProps, { getLists, deleteList, addList, editList, getCards, addCard, deleteCard, editCard })(App);

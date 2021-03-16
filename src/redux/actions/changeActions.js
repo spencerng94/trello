@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DELETE_LIST, POST_LIST, UPDATE_LIST, POST_CARD, DELETE_CARD } from './index.js';
+import { DELETE_LIST, POST_LIST, UPDATE_LIST, POST_CARD, DELETE_CARD, UPDATE_CARD } from './index.js';
 import { getLists, getCards } from './getActions.js';
 import { GET_ERRORS } from './index.js';
 
@@ -121,5 +121,31 @@ export const deleteCard = (cardId, listId) => dispatch => {
                 payload: err.response.data
             })
         );
+
+}
+
+export const editCard = (cardId, listId, newCardTitle) => dispatch => {
+    console.log(cardId, listId, newCardTitle, 'line 53');
+    let data = ({
+        cardId: cardId,
+        listId: listId,
+        CardTitle: newCardTitle
+    })
+
+    axios.patch(`http://127.0.0.1:3001/api/lists/${cardId}`, data)
+    .then(data => {
+        console.log(data, 'editList line 7');
+        dispatch({
+            type: UPDATE_CARD,
+            payload: data
+        })
+        dispatch(getCards());
+    })
+    .catch(err =>
+        dispatch({
+            type: GET_ERRORS,
+            payload: {}
+        })
+    );
 
 }

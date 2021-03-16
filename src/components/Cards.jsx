@@ -3,8 +3,7 @@ import store from '../redux/store/index.js';
 import Card from './Card.jsx';
 
 const Cards = (props) => {
-    console.log(store.getState().getReducers.cards, 'line 4')
-    let {listId, handleAddCard, handleDeleteCard} = props;
+    let {listId, handleAddCard, handleDeleteCard, handleEditCard} = props;
     let currentCardState = store.getState().getReducers.cards;
 
     let currentCardStack = [];
@@ -14,7 +13,6 @@ const Cards = (props) => {
             currentCardStack.push(currentCardState[i]);
         } 
     }
-    console.log(currentCardStack, 'line 15')
 
     let lastPosition = 0;
     let lastCardId = 0;
@@ -25,8 +23,6 @@ const Cards = (props) => {
     }
 
     let handleAnotherCard = (e) => {
-        console.log('made it to 21')
-        console.log(lastCardId, 'lastCardId')
         console.log(e.target.value, 'line 277777')
         let newCardName = e.target.value;
         handleAddCard(listId, lastCardId, lastPosition, newCardName);
@@ -37,7 +33,7 @@ const Cards = (props) => {
             <div>
                 {
                     currentCardStack.map((card) => {
-                        return <Card cardId={card[0].card_id} originalCardId={card[0]._id} cardName={card[0].card_name} listId={listId} handleDeleteCard={handleDeleteCard}/>
+                        return <Card cardId={card[0].card_id} originalCardId={card[0]._id} cardName={card[0].card_name} listId={listId} handleDeleteCard={handleDeleteCard} handleEditCard={handleEditCard}/>
                     })
                 }
             </div>

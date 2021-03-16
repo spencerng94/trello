@@ -2,7 +2,7 @@ import ListTitle from './ListTitle.jsx';
 import Cards from './Cards.jsx';
 
 const List = (props) => {
-    let {listName, listId, listPosition, handleDeleteList, handleEditList, handleAddCard, handleDeleteCard} = props;
+    let {listName, listId, listPosition, handleDeleteList, handleEditList, handleAddCard, handleDeleteCard, handleEditCard} = props;
 
     let currentListId = listId;
 
@@ -24,7 +24,7 @@ const List = (props) => {
                 <div class="row">
                     <header>
                         <div>
-                            <div class="float-start" onClick={handleClickEdit}>
+                            <div class="float-start">
                                 <ListTitle listName={listName}/>
                                 <input type="text" onClick={handleClickEdit} />
                             </div>
@@ -33,7 +33,7 @@ const List = (props) => {
                     </header>
                 </div>
             </div>
-            <Cards listId={listId} handleAddCard={handleAddCard} handleDeleteCard={handleDeleteCard}/>
+            <Cards listId={listId} handleAddCard={handleAddCard} handleDeleteCard={handleDeleteCard} handleEditCard={handleEditCard}/>
         </div>
     )
 }
