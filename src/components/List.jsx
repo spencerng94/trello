@@ -2,7 +2,7 @@ import ListTitle from './ListTitle.jsx';
 import Cards from './Cards.jsx';
 
 const List = (props) => {
-    let {listName, listId, listPosition, handleDeleteList, handleEditList, handleAddCard} = props;
+    let {listName, listId, listPosition, handleDeleteList, handleEditList, handleAddCard, handleDeleteCard} = props;
 
     let currentListId = listId;
 
@@ -33,7 +33,7 @@ const List = (props) => {
                     </header>
                 </div>
             </div>
-            <Cards listId={listId} handleAddCard={handleAddCard}/>
+            <Cards listId={listId} handleAddCard={handleAddCard} handleDeleteCard={handleDeleteCard}/>
         </div>
     )
 }

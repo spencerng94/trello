@@ -117,11 +117,6 @@ app.get('/api/cards', async (req, res) => {
 
 // Add Card by List Id 
 app.post("/api/cards/:id", async (request, response) => {
-    console.log(request.body.params, 'line 121')
-    console.log(typeof(request.body.params.listId))
-    console.log(typeof(request.body.params.cardName))
-    console.log(typeof(request.body.params.position), 'line 123')
-
     let newId = new Card({
         card_id : request.body.params.cardId,
         list_id : request.body.params.listId,
@@ -129,26 +124,12 @@ app.post("/api/cards/:id", async (request, response) => {
         position: request.body.params.position 
     })
 
-    var myId = JSON.parse(request.body.params.listId);
-
-    let newCardObject = {
-        card_id : request.body.params.cardId,
-        list_id : request.body.params.listId,
-        card_name: request.body.params.cardName,
-        position: request.body.params.position 
-    }
-
-
     let updateQuery = {
         // list_id: myId
         "list_id": request.body.params.listId
     }
 
     try {
-        // var result = await List.aggregate([
-        //     {$match : { _id: request.body.params.listId}},
-        //     {$addFields: { _cards: { $concatArrays: ["$_cards", [newCardObject]]}}}
-        // ])
         var result = await List.updateOne(
             updateQuery,
             { 
@@ -164,6 +145,37 @@ app.post("/api/cards/:id", async (request, response) => {
         response.status(500).send(error);
     }
 })
+
+// Delete Card by List Id and Card Id
+app.delete("/api/cards/:id", async (request, response) => {
+    console.log(request.query, 'line 63 from DELETE')
+
+    let deleteQuery = {
+        "list_id": parseInt(request.query.listId),
+    }
+
+    let deleteObject = {
+        "card_id" : parseInt(request.query.cardId),
+    }
+
+    try {
+        var result = await List.updateOne(
+            deleteQuery,
+            { 
+                "$pull": { 
+                    "_cards": deleteObject
+                }
+            }
+        )
+
+        console.log('result from delete:', result);
+
+        response.send(result);
+    } catch (error) {
+        console.log(error, 'line 55')
+        response.status(500).send(error);
+    }
+});
 
 
 app.listen(PORT, () => {

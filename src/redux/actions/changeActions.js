@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DELETE_LIST, POST_LIST, UPDATE_LIST, POST_CARD } from './index.js';
+import { DELETE_LIST, POST_LIST, UPDATE_LIST, POST_CARD, DELETE_CARD } from './index.js';
 import { getLists, getCards } from './getActions.js';
 import { GET_ERRORS } from './index.js';
 
@@ -10,7 +10,6 @@ export const deleteList = (listId) => dispatch => {
     // axios({method: 'delete', url: `http://127.0.0.1:3001/api/lists`, data: listId})
     axios.delete(`http://127.0.0.1:3001/api/lists/${listId}`, { params: data })
         .then(data => {
-            console.log(data, 'deleteList line 7');
             dispatch({
                 type: DELETE_LIST,
                 payload: listId
@@ -75,7 +74,7 @@ export const editList = (listId, newName) => dispatch => {
 }
 
 export const addCard = (listId, lastCardId, lastPosition, newCardName) => dispatch => {
-    console.log(listId, 'line 7')
+    console.log(lastCardId, 'line 7')
     let data = ({
         cardId: lastCardId + 1,
         listId: listId, 
@@ -99,4 +98,28 @@ export const addCard = (listId, lastCardId, lastPosition, newCardName) => dispat
                 payload: err.response.data
             })
         );
+}
+
+export const deleteCard = (cardId, listId) => dispatch => {
+    let data = ({
+        listId: listId,
+        cardId: cardId
+    })
+    console.log(data, 'line 109')
+    axios.delete(`http://127.0.0.1:3001/api/cards/${cardId}`, { params: data })
+        .then(data => {
+            console.log(data, 'deleteCard line 112');
+            dispatch({
+                type: DELETE_CARD,
+                payload: cardId
+            })
+            dispatch(getCards());
+        })
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+
 }
