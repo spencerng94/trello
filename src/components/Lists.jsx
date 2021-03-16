@@ -3,8 +3,13 @@ import List from './List.jsx';
 import store from '../redux/store/index.js';
 
 const Lists = (props) => {
-    let { lists, handleDeleteList, handleAddList, handleEditList } = props;
-    console.log(lists, 'line 6');
+    let { lists, handleDeleteList, handleAddList, handleEditList, handleAddCard} = props;
+    console.log(store.getState().getReducers.lists, 'line 9')
+    let currentLists = store.getState().getReducers.lists;
+
+    if (currentLists.length > 0) {
+        lists = store.getState().getReducers.lists;
+    }
 
     let newListId;
 
@@ -14,12 +19,17 @@ const Lists = (props) => {
         newListId = lists[lists.length - 1]["list_id"] + 1;
     }
 
+    if (lists.length > 0) {
+        let listIds = [];
+        lists.forEach(list => {
+            listIds.push(list.list_id);
+        })
+    }
+
     let onClickHandler = (listId) => {
         handleAddList(newListId);
     }
 
-
-    let dummyLists = ['to-do', 'in progress', 'finished'];
 
     return (
         <div>
@@ -27,7 +37,7 @@ const Lists = (props) => {
                 <div className="flex-container">
                     {
                         lists.map((listElement) => {
-                            return <List listName={listElement.list_name} listId={listElement.list_id} listPosition={listElement.list_position} handleDeleteList={handleDeleteList} handleEditList={handleEditList}/>
+                            return <List listName={listElement.list_name} listId={listElement.list_id} listPosition={listElement.list_position} handleDeleteList={handleDeleteList} handleEditList={handleEditList} handleAddCard={handleAddCard}/>
                         })
                     }
                     <div className ="single-list" onClick={onClickHandler}>

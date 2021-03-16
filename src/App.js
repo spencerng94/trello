@@ -5,9 +5,10 @@ import './App.css';
 import NavBar from './navigation/navigationBar.jsx';
 import BoardHeader from './components/boardHeader.jsx';
 import Lists from './components/Lists.jsx';
-import { getLists } from './redux/actions/getActions.js';
-import { deleteList, addList, editList} from './redux/actions/changeActions.js';
+import { getLists, getCards } from './redux/actions/getActions.js';
+import { deleteList, addList, editList, addCard} from './redux/actions/changeActions.js';
 import store from './redux/store/index.js';
+import unsubscribe from './redux/store/index.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,26 +17,23 @@ class App extends React.Component {
       lists: [],
       cards: []
     };
+    this.onGetCards = this.onGetCards.bind(this);
     this.onGetLists = this.onGetLists.bind(this);
     this.handleAddList = this.handleAddList.bind(this);
     this.handleDeleteList = this.handleDeleteList.bind(this);
     this.handleEditList = this.handleEditList.bind(this);
+    this.handleAddCard = this.handleAddCard.bind(this);
+  }
+
+  onGetCards() {
+    store.dispatch(this.props.getCards);
   }
 
   onGetLists() {
-    this.props.getLists();
-    store.subscribe(() => {
-      const state = store.getState();
-      console.log(state, 'line 22')
-      console.log(state.getReducers.lists, 'line 23')
-      this.setState({
-        lists: state.getReducers.lists
-      })
-    });
+    store.dispatch(this.props.getLists);
   }
 
   handleAddList(newListId) {
-    console.log(newListId, 'line 37');
     this.props.addList(newListId);
   }
 
@@ -48,29 +46,42 @@ class App extends React.Component {
     this.props.editList(listId, newName);
   }
 
+  handleAddCard(listId, lastCardId, lastPosition, newCardName) {
+    console.log(listId, 'line 50');
+    this.props.addCard(listId, lastCardId, lastPosition, newCardName);
+  }
+
   componentDidMount() {
-    this.onGetLists()
+    this.onGetLists();
+    this.onGetCards();
   }
 
   render() {
-    const {lists} = this.state;
-    console.log(lists, 'line 40')
+    const {lists, listIds, cards} = this.state;
+    console.log(cards, 'line 40')
     
     return (
         <div className="App">
             <NavBar/>
             <BoardHeader/>
-            <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList}/>
+            <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList} handleAddCard={this.handleAddCard}/>
         </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  lists: state.lists,
-  cards: state.cards
-});
+const mapStateToProps = (state) => {
+  // lists: state.lists,
+  // listIds: state.listIds,
+  // cards: state.cards
+  return state;
+};
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLists: () => { dispatch({type: 'GET_LISTS'})},
+    getCards: () => { dispatch({type: 'GET_CARDS'})}
+  }
+}
 
-
-export default connect(mapStateToProps, { getLists, deleteList, addList, editList })(App);
+export default connect(mapStateToProps, { getLists, deleteList, addList, editList, getCards, addCard })(App);
