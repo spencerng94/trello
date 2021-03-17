@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const credentials = require('../database/credentials.js');
 const cors = require('cors')
+const path = require('path');
 
 const List = require('../database/models/listSchema.js');
 const Card = require('../database/models/cardSchema.js');
@@ -16,6 +17,7 @@ app.use(cors({ origin: true }));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("public"));
+app.use('*', express.static(path.join(__dirname, "client", "build")))
 
 const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
 
