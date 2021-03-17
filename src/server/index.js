@@ -20,14 +20,15 @@ app.use(express.static("public"));
 const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
 
 
-
-// mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
-//     useNewUrlParser: true
-// });
-
-mongoose.connect( "mongodb://localhost/trello", {
+// For production
+mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
     useNewUrlParser: true
 });
+
+// For development
+// mongoose.connect( "mongodb://localhost/trello", {
+//     useNewUrlParser: true
+// });
 
 // app.use(express.static('App.js'))
 app.set('port', PORT)
