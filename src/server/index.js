@@ -19,9 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
 
+const uri = process.env.MONGODB_URI;
 
 // For production
-mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
+mongoose.connect(uri, {
     useNewUrlParser: true
 });
 app.use(express.static(path.join(__dirname, '../../build')));
