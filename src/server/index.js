@@ -17,14 +17,12 @@ app.use(cors({ origin: true }));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
-
 const MONGODB_URI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
 
 const uri = process.env.MONGODB_URI;
 
 // For production
-mongoose.connect(uri, {
+mongoose.connect(uri || "mongodb://localhost:27017/trello", {
     useNewUrlParser: true
 });
 app.use(express.static(path.join(__dirname, '../../build')));
