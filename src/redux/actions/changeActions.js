@@ -7,7 +7,6 @@ export const deleteList = (listId) => dispatch => {
     let data = ({
         list_id: listId
     })
-    // axios({method: 'delete', url: `http://127.0.0.1:3001/api/lists`, data: listId})
     axios.delete(`http://127.0.0.1:3001/api/lists/${listId}`, { params: data })
         .then(data => {
             dispatch({
@@ -26,11 +25,9 @@ export const deleteList = (listId) => dispatch => {
 
 
 export const addList = (newListId) => dispatch => {
-    console.log(newListId, 'line 7')
     let data = ({
         listId: newListId
     })
-    // axios({method: 'delete', url: `http://127.0.0.1:3001/api/lists`, data: listId})
     axios.post(`http://127.0.0.1:3001/api/lists/${newListId}`, { params: data })
         .then(data => {
             console.log(data, 'addList line 7');

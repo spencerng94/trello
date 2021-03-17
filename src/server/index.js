@@ -37,7 +37,6 @@ app.get("/api/lists", async (request, response) => {
 
 // Add List 
 app.post("/api/lists/:id", async (request, response) => {
-    console.log(request.params, 'line 46')
 
     let newId = parseInt(request.params.id);
 
@@ -46,8 +45,6 @@ app.post("/api/lists/:id", async (request, response) => {
         list_name: "New List",
         position: newId
     }
-
-    console.log(insertObject, 'line 56')
 
     try {
         var result = await List.create(insertObject);
@@ -61,7 +58,7 @@ app.post("/api/lists/:id", async (request, response) => {
 
 // Delete List
 app.delete("/api/lists/:id", async (request, response) => {
-    console.log(request.params, 'line 63 from DELETE')
+
     try {
         var result = await List.deleteOne({list_id: `${request.params.id}`}).exec();
         console.log('result from delete:', result);
@@ -77,8 +74,7 @@ app.delete("/api/lists/:id", async (request, response) => {
 app.patch("/api/lists/:id", async (request, response) => {
     let newName = request.body.listTitle;
     let currentId = request.body.listId;
-    console.log(newName, 'line 83')
-    // let currentId = parseInt(request.params.id);
+
     let updateQuery = {
         list_id: currentId
     }
@@ -102,11 +98,9 @@ app.patch("/api/lists/:id", async (request, response) => {
 app.get('/api/cards', async (req, res) => {
 
     try {
-
         var result = await List.aggregate([{
             $unwind: '$_cards'
         }])
-        console.log('result from app.get/api/cards:', result);
         res.send(result);
     } catch (error) {
         res.status(500).send(error);
@@ -135,10 +129,8 @@ app.post("/api/cards/:id", async (request, response) => {
                 }
             }
         )
-        console.log('result from postCard:', result);
         response.send(result);
     } catch (error) {
-        console.log(error, 'line 55')
         response.status(500).send(error);
     }
 })
@@ -167,7 +159,6 @@ app.delete("/api/cards/:id", async (request, response) => {
 
         response.send(result);
     } catch (error) {
-        console.log(error, 'line 55')
         response.status(500).send(error);
     }
 });

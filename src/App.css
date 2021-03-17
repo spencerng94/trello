@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: url('./trello-background.jpeg');
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
 .App-logo {
@@ -68,8 +74,18 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  background-color: #0079bf;
+  /* background-color: #0079bf; */
   height: 100%;
+}
+
+.bg-wrapper {
+  background-image: url('./trello-background.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 
@@ -78,7 +94,9 @@ body {
   display: flex;
   align-items: center;
   padding: 0 0.8rem;
-  background-color: #0067a3;
+  /* background-color: transparent; */
+  background-color: #000000;
+  opacity: 0.5;
   box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
 }
 
@@ -177,6 +195,8 @@ body {
   margin: 1.8rem 0;
   padding: 0 1rem;
   color: #f6f6f6;
+  background-color: gray;
+  opacity: 0.4;
 }
 
 .board-controls {
@@ -201,7 +221,7 @@ body {
 }
 
 .board-info-bar .btn:hover {
-  background-color: #006aa8;
+  background-color: transparent;
 }
 
 .private-btn-icon,
