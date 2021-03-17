@@ -18,7 +18,7 @@ export const deleteList = (listId) => dispatch => {
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err
             })
         );
 }
@@ -92,7 +92,7 @@ export const addCard = (listId, lastCardId, lastPosition, newCardName) => dispat
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err
             })
         );
 }
@@ -115,7 +115,7 @@ export const deleteCard = (cardId, listId) => dispatch => {
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err
             })
         );
 
