@@ -20,10 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
 
-app.use(express.static(path.join(__dirname, "/../build")));
-
-// This route serves the React app
-app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, "/../build", "index.html")));
+app.use(express.static(path.join(__dirname, "..", "..", "build")));
 
 
 // For production
