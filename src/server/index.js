@@ -24,7 +24,7 @@ const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongo
 mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
     useNewUrlParser: true
 });
-app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 // For development
 // mongoose.connect( "mongodb://localhost/trello", {
