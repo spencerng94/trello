@@ -18,22 +18,10 @@ code {
   padding: 10px;
 }
 
-.single-list {
-  width: 272px;
-  margin: 4px;
-}
-
-.btn-close {
-  margin-left: 50px;
-}
-
-.list-header {
-  display: flex;
-  
-}
 
 .single-card {
   background-color: white;
   width: 90%;
   margin-left: 5%;
 }
+

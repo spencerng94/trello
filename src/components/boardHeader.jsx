@@ -3,48 +3,27 @@ import react from 'react';
 const BoardHeader = () => {
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-    <li class="nav-item active">
-        <a class="nav-link" href="#">Board (dropdown) <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">BOARD NAME <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">STAR</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> | </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">TEAM NAME</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">TEAM VISIBLE </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> | </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">PERSONAL ICON</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">INVITE</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Butler</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Show Menu</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+       <div>
+         <section class="board-info-bar">
+          <div class="board-controls">
+
+            <button class="board-title btn">
+              <h2>Trello Board</h2>
+            </button>
+            <button class="star-btn btn" aria-label="Star Board">
+              <i class="far fa-star" aria-hidden="true"></i>
+            </button>
+
+            <button class="personal-btn btn">Personal</button>
+
+            <button class="private-btn btn"><i class="fas fa-briefcase private-btn-icon" aria-hidden="true"></i>Private</button>
+
+          </div>
+
+          <button class="menu-btn btn"><i class="fas fa-ellipsis-h menu-btn-icon" aria-hidden="true"></i>Show Menu</button>
+
+          </section>
+       </div>
     )
 }
 

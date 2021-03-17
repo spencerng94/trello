@@ -87,8 +87,6 @@ app.patch("/api/lists/:id", async (request, response) => {
         list_name: newName
     }
 
-    console.log(updateObject, 'line 92')
-
     try {
         var result = await List.updateOne(updateQuery, updateObject);
         console.log('result from patch:', result);
@@ -125,7 +123,6 @@ app.post("/api/cards/:id", async (request, response) => {
     })
 
     let updateQuery = {
-        // list_id: myId
         "list_id": request.body.params.listId
     }
 
@@ -148,8 +145,6 @@ app.post("/api/cards/:id", async (request, response) => {
 
 // Delete Card by List Id and Card Id
 app.delete("/api/cards/:id", async (request, response) => {
-    console.log(request.query, 'line 63 from DELETE')
-
     let deleteQuery = {
         "list_id": parseInt(request.query.listId),
     }
@@ -179,9 +174,6 @@ app.delete("/api/cards/:id", async (request, response) => {
 
 // Patch Card Name
 app.patch("/api/cards/:id", async (request, response) => {
-
-    console.log(request.body, 'line 183');
-    // let currentId = parseInt(request.params.id);
     let updateQuery = {
         "list_id": request.body.listId,
         "_cards.card_id": request.body.cardId
@@ -193,13 +185,11 @@ app.patch("/api/cards/:id", async (request, response) => {
         card_name: request.body.cardTitle
     }
 
-    console.log(updateObject, 'line 92')
-
     try {
         var result = await List.updateOne(updateQuery, 
             {
                 "$set": {
-                    "_cards": updateObject
+                    "_cards.$": updateObject
                 }
             }    
         );

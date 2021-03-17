@@ -39,8 +39,8 @@ const Lists = (props) => {
                             return <List listName={listElement.list_name} listId={listElement.list_id} listPosition={listElement.list_position} handleDeleteList={handleDeleteList} handleEditList={handleEditList} handleAddCard={handleAddCard} handleDeleteCard={handleDeleteCard} handleEditCard={handleEditCard} showEditList={showEditList} editingList={editingList} showEditCard={showEditCard} editingCard={editingCard} showAddCard={showAddCard}addingCard={addingCard} currentAddList={currentAddList} currentNewCardName={currentNewCardName} handleCardChange={handleCardChange} currentEditList={currentEditList} handleListChange={handleListChange} currentNewListName={currentNewListName} currentEditCardList={currentEditCardList} currentEditCard={currentEditCard}/>
                         })
                     }
-                    <div className ="single-list" onClick={onClickHandler}>
-                        Add Another List
+                    <div className ="list-container">
+                        <button onClick={onClickHandler} class="add-list-btn btn">Add a list</button>
                     </div>
                 </div>
             </ul>

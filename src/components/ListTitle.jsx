@@ -20,12 +20,12 @@ const ListTitle = (props) => {
         <div>
             {
                 editingList && (currentEditList === listId)?
-                <div>
-                    <input type="text" onChange={handleListChange} />
-                    <button type="button" class="btn btn-success" onClick={handleClickEdit}>Submit</button>
+                <div className="submit-container">
+                    <input className="submit-input" type="text" onChange={handleListChange} />
+                    <button class="submit-btn btn" onClick={handleClickEdit}>Submit</button>
                 </div>
                     :
-                <div class="float-start" onClick={editListHandler}>
+                <div className="list-title" onClick={editListHandler}>
                    {listName}
                 </div>
             }

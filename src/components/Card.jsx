@@ -21,9 +21,9 @@ const Card = (props) => {
         <div className="single-card">
             {
                 editingCard && (currentEditCardList === listId) && (currentEditCard === cardId)? 
-                <div>
-                    <input type="text" onChange={handleCardChange}/>
-                    <button type="button" class="btn btn-success" onClick={editCardSubmitter}>Submit</button>
+                <div className="submit-container-card">
+                    <input className="submit-input" type="text" onChange={handleCardChange}/>
+                    <button class="submit-btn btn" onClick={editCardSubmitter}>Submit</button>
                 </div>
                     :
                     <div onClick={editCardHandler}>
@@ -36,10 +36,3 @@ const Card = (props) => {
 }
 
 export default Card;
-
-{/* <div onClick={editCardHandler}>
-{cardName}
-<input type="text" onChange={handleCardChange}/>
-<button type="button" class="btn btn-success" onClick={editCardSubmitter}>Submit</button>
-</div>
-<button type="button" class="btn-close float-end" aria-label="Close" onClick={deleteClickHandler}></button> */}

@@ -59,7 +59,6 @@ class App extends React.Component {
   }
 
   handleEditList(listId, newName) {
-    console.log(listId, newName, 'line 47777')
     this.props.editList(listId, newName);
   }
 
@@ -72,7 +71,6 @@ class App extends React.Component {
   }
 
   handleEditCard(cardId, listId, newCardTitle) {
-    console.log(cardId, listId, newCardTitle, 'made it here line 61');
     this.props.editCard(cardId, listId, newCardTitle);
   }
 
@@ -84,7 +82,6 @@ class App extends React.Component {
   }
 
   showEditCard(listId, cardId) {
-    console.log(this.state.editingCard, 'made it to editCard')
     this.setState({
       editingCard: !this.state.editingCard,
       currentEditCardList: listId,
@@ -93,7 +90,6 @@ class App extends React.Component {
   }
 
   showAddCard(listId) {
-    console.log(this.state.addingCard, 'made it to AddingCard')
     this.setState({
       addingCard: !this.state.addingCard,
       currentAddList: listId

@@ -17,15 +17,12 @@ const AddCard = (props) => {
         <div>
             {
                 addingCard && (currentAddList === listId)?
-                <div>
-
-                    <input type="text" onChange={handleCardChange}/>
-                    <button type="button" class="btn btn-success" onClick={handleAnotherCard}>Submit</button>
+                <div className="submit-container-add-card">
+                    <input className="submit-input" type="text" onChange={handleCardChange}/>
+                    <button class="submit-btn btn" onClick={handleAnotherCard}>Submit</button>
                 </div>
                     :
-                <div onClick={addCardHandler}>
-                    Add another card:
-                </div>
+                <button class="add-card-btn btn" onClick={addCardHandler}>Add a card</button>
             }
         </div>
     )
