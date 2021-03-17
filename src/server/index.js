@@ -16,7 +16,6 @@ app.use(cors({ origin: true }));
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static("public"));
 
 const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
 
@@ -25,15 +24,16 @@ const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongo
 mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
     useNewUrlParser: true
 });
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 // For development
 // mongoose.connect( "mongodb://localhost/trello", {
 //     useNewUrlParser: true
 // });
+// app.use(express.static("public"));
 
 // app.use(express.static('App.js'))
 
-app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.set('port', PORT)
 
