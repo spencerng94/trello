@@ -212,4 +212,4 @@ app.listen(PORT, () => {
 });
 
 
-app.all("/*", (req, res) => { res.sendFile(__dirname + "/build/index.html"); });
+app.all("/*", (req, res) => { res.sendFile(__dirname + "../../build/index.html"); });
