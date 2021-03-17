@@ -22,7 +22,7 @@ const MONGODB_URI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mong
 const uri = process.env.MONGODB_URI;
 
 // For production
-mongoose.connect(uri || "mongodb://localhost:27017/trello", {
+mongoose.connect(uri, {
     useNewUrlParser: true
 });
 app.use(express.static(path.join(__dirname, '../../build')));
