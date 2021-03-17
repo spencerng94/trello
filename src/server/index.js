@@ -31,7 +31,7 @@ mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
 //     useNewUrlParser: true
 // });
 
-app.use(express.static('App.js'))
+// app.use(express.static('App.js'))
 
 app.set('port', PORT)
 
