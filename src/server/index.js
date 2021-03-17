@@ -33,6 +33,8 @@ mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
 
 // app.use(express.static('App.js'))
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.set('port', PORT)
 
 

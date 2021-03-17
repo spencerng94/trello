@@ -30,7 +30,6 @@ export const addList = (newListId) => dispatch => {
     })
     axios.post(`http://127.0.0.1:3001/api/lists/${newListId}`, { params: data })
         .then(data => {
-            console.log(data, 'addList line 7');
             dispatch({
                 type: POST_LIST,
                 payload: newListId
@@ -40,13 +39,12 @@ export const addList = (newListId) => dispatch => {
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err
             })
         );
 }
 
 export const editList = (listId, newName) => dispatch => {
-    console.log(listId, newName, 'line 53');
     let data = ({
         listId: listId,
         listTitle: newName
@@ -54,7 +52,6 @@ export const editList = (listId, newName) => dispatch => {
 
     axios.patch(`http://127.0.0.1:3001/api/lists/${listId}`, data)
     .then(data => {
-        console.log(data, 'editList line 7');
         dispatch({
             type: UPDATE_LIST,
             payload: data
@@ -71,7 +68,6 @@ export const editList = (listId, newName) => dispatch => {
 }
 
 export const addCard = (listId, lastCardId, lastPosition, newCardName) => dispatch => {
-    console.log(lastCardId, 'line 7')
     let data = ({
         cardId: lastCardId + 1,
         listId: listId, 
@@ -82,7 +78,6 @@ export const addCard = (listId, lastCardId, lastPosition, newCardName) => dispat
     // axios({method: 'delete', url: `http://127.0.0.1:3001/api/lists`, data: listId})
     axios.post(`http://127.0.0.1:3001/api/cards/${listId}`, { params: data })
         .then(data => {
-            console.log(data, 'addCard line 8989');
             dispatch({
                 type: POST_CARD,
                 payload: data
