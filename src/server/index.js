@@ -211,3 +211,5 @@ app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 });
 
+
+app.all("/*", (req, res) => { res.sendFile(__dirname + "/build/index.html"); });
