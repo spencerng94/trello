@@ -31,3 +31,9 @@ code {
   display: flex;
   
 }
+
+.single-card {
+  background-color: white;
+  width: 90%;
+  margin-left: 5%;
+}

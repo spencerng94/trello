@@ -15,7 +15,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       lists: [],
-      cards: []
+      cards: [],
+      editingList: false,
+      editingCard: false,
+      addingCard: false,
+      currentAddList: 0,
+      currentNewCardName: '', 
+      currentEditList: 0,
+      currentNewListName: '',
+      currentEditCard: 0,
+      currentEditCardName: '',
+      currentEditCardList: 0
     };
     this.onGetCards = this.onGetCards.bind(this);
     this.onGetLists = this.onGetLists.bind(this);
@@ -25,6 +35,11 @@ class App extends React.Component {
     this.handleAddCard = this.handleAddCard.bind(this);
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
     this.handleEditCard = this.handleEditCard.bind(this);
+    this.showEditList = this.showEditList.bind(this);
+    this.showEditCard = this.showEditCard.bind(this);
+    this.showAddCard = this.showAddCard.bind(this);
+    this.handleCardChange = this.handleCardChange.bind(this);
+    this.handleListChange = this.handleListChange.bind(this);
   }
 
   onGetCards() {
@@ -57,7 +72,44 @@ class App extends React.Component {
   }
 
   handleEditCard(cardId, listId, newCardTitle) {
-    console.log('made it here line 61');
+    console.log(cardId, listId, newCardTitle, 'made it here line 61');
+    this.props.editCard(cardId, listId, newCardTitle);
+  }
+
+  showEditList(listId) {
+    this.setState({
+      editingList: !this.state.editingList,
+      currentEditList: listId
+    })
+  }
+
+  showEditCard(listId, cardId) {
+    console.log(this.state.editingCard, 'made it to editCard')
+    this.setState({
+      editingCard: !this.state.editingCard,
+      currentEditCardList: listId,
+      currentEditCard: cardId
+    })
+  }
+
+  showAddCard(listId) {
+    console.log(this.state.addingCard, 'made it to AddingCard')
+    this.setState({
+      addingCard: !this.state.addingCard,
+      currentAddList: listId
+    })
+  }
+
+  handleCardChange(event) {
+    this.setState({
+      currentNewCardName: event.target.value
+    })
+  }
+
+  handleListChange(event) {
+    this.setState({
+      currentNewListName: event.target.value
+    })
   }
 
   componentDidMount() {
@@ -67,22 +119,18 @@ class App extends React.Component {
 
   render() {
     const {lists, listIds, cards} = this.state;
-    console.log(cards, 'line 40')
     
     return (
         <div className="App">
             <NavBar/>
             <BoardHeader/>
-            <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList} handleAddCard={this.handleAddCard} handleDeleteCard={this.handleDeleteCard} handleEditCard={this.handleEditList}/>
+            <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList} handleAddCard={this.handleAddCard} handleDeleteCard={this.handleDeleteCard} handleEditCard={this.handleEditCard} editingList={this.state.editingList} showEditList={this.showEditList} showEditCard={this.showEditCard} editingCard={this.state.editingCard} addingCard={this.state.addingCard} showAddCard={this.showAddCard} currentAddList={this.state.currentAddList} currentNewCardName={this.state.currentNewCardName} handleCardChange={this.handleCardChange} currentEditList={this.state.currentEditList} handleListChange={this.handleListChange} currentNewListName={this.state.currentNewListName} currentEditCardList={this.state.currentEditCardList} currentEditCard={this.state.currentEditCard}/>
         </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  // lists: state.lists,
-  // listIds: state.listIds,
-  // cards: state.cards
   return state;
 };
 

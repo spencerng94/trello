@@ -129,12 +129,12 @@ export const editCard = (cardId, listId, newCardTitle) => dispatch => {
     let data = ({
         cardId: cardId,
         listId: listId,
-        CardTitle: newCardTitle
+        cardTitle: newCardTitle
     })
 
-    axios.patch(`http://127.0.0.1:3001/api/lists/${cardId}`, data)
+    axios.patch(`http://127.0.0.1:3001/api/cards/${cardId}`, data)
     .then(data => {
-        console.log(data, 'editList line 7');
+        console.log(data, 'editCard line 137');
         dispatch({
             type: UPDATE_CARD,
             payload: data

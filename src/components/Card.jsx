@@ -1,26 +1,45 @@
 const Card = (props) => {
-    let {cardName, cardId, listId, handleDeleteCard, originalCardId, handleEditCard} = props;
+    let {cardName, cardId, listId, handleDeleteCard, originalCardId, handleEditCard, showEditCard, editingCard, currentNewCardName, handleCardChange, currentEditCardList, currentEditCard} = props;
 
-    let onClickHandler = (currentCardId, currentListId) => {
+    let deleteClickHandler = (currentCardId, currentListId) => {
         handleDeleteCard(cardId, listId);
     }
 
-    let handleClickEdit = (e) => {
+    let editCardSubmitter = (e) => {
         e.preventDefault();
         console.log('Card Name was selected');
-        let newCardTitle = e.target.value;
+        let newCardTitle = currentNewCardName;
         handleEditCard(cardId, listId, newCardTitle);
+        showEditCard(listId, cardId)
+    }
+
+    let editCardHandler = () => {
+        showEditCard(listId, cardId);
     }
 
     return (
-        <div>
-            <div onClick={handleClickEdit}>
-                {cardName}
-                <input type="text" onClick={handleClickEdit}/>
-            </div>
-            <button type="button" class="btn-close float-end" aria-label="Close" onClick={onClickHandler}></button>
+        <div className="single-card">
+            {
+                editingCard && (currentEditCardList === listId) && (currentEditCard === cardId)? 
+                <div>
+                    <input type="text" onChange={handleCardChange}/>
+                    <button type="button" class="btn btn-success" onClick={editCardSubmitter}>Submit</button>
+                </div>
+                    :
+                    <div onClick={editCardHandler}>
+                        {cardName}
+                    <button type="button" class="btn-close float-end" aria-label="Close" onClick={deleteClickHandler}></button>
+                    </div>
+            }
         </div>
     )
 }
 
 export default Card;
+
+{/* <div onClick={editCardHandler}>
+{cardName}
+<input type="text" onChange={handleCardChange}/>
+<button type="button" class="btn btn-success" onClick={editCardSubmitter}>Submit</button>
+</div>
+<button type="button" class="btn-close float-end" aria-label="Close" onClick={deleteClickHandler}></button> */}

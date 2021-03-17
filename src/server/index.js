@@ -177,23 +177,32 @@ app.delete("/api/cards/:id", async (request, response) => {
     }
 });
 
-// Patch List Name
+// Patch Card Name
 app.patch("/api/cards/:id", async (request, response) => {
 
     console.log(request.body, 'line 183');
     // let currentId = parseInt(request.params.id);
     let updateQuery = {
-        list_id: currentId
+        "list_id": request.body.listId,
+        "_cards.card_id": request.body.cardId
     }
+
     let updateObject = {
-        list_id: currentId,
-        list_name: newName
+        list_id: request.body.listId,
+        card_id: request.body.cardId,
+        card_name: request.body.cardTitle
     }
 
     console.log(updateObject, 'line 92')
 
     try {
-        var result = await List.updateOne(updateQuery, updateObject);
+        var result = await List.updateOne(updateQuery, 
+            {
+                "$set": {
+                    "_cards": updateObject
+                }
+            }    
+        );
         console.log('result from patch:', result);
         response.send(result);
     } catch (error) {

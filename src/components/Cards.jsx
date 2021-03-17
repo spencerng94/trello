@@ -1,9 +1,10 @@
 import { last } from 'lodash';
 import store from '../redux/store/index.js';
 import Card from './Card.jsx';
+import AddCard from './addCard.jsx';
 
 const Cards = (props) => {
-    let {listId, handleAddCard, handleDeleteCard, handleEditCard} = props;
+    let {listId, handleAddCard, handleDeleteCard, handleEditCard, showEditCard, editingCard, showAddCard, addingCard, currentAddList, currentNewCardName, handleCardChange, currentEditCardList, currentEditCard} = props;
     let currentCardState = store.getState().getReducers.cards;
 
     let currentCardStack = [];
@@ -21,25 +22,18 @@ const Cards = (props) => {
         lastPosition = currentCardStack[currentCardStack.length - 1][0].position;
         lastCardId = currentCardStack[currentCardStack.length - 1][0].card_id;
     }
-
-    let handleAnotherCard = (e) => {
-        console.log(e.target.value, 'line 277777')
-        let newCardName = e.target.value;
-        handleAddCard(listId, lastCardId, lastPosition, newCardName);
-    }
     
     return (
         <div>
             <div>
                 {
                     currentCardStack.map((card) => {
-                        return <Card cardId={card[0].card_id} originalCardId={card[0]._id} cardName={card[0].card_name} listId={listId} handleDeleteCard={handleDeleteCard} handleEditCard={handleEditCard}/>
+                        return <Card cardId={card[0].card_id} originalCardId={card[0]._id} cardName={card[0].card_name} listId={listId} handleDeleteCard={handleDeleteCard} handleEditCard={handleEditCard} showEditCard={showEditCard} editingCard={editingCard} handleCardChange={handleCardChange} currentNewCardName={currentNewCardName} currentEditCardList={currentEditCardList} currentEditCard={currentEditCard}/>
                     })
                 }
             </div>
-            <div onClick={handleAnotherCard}>
-                Add another card:
-                <input type="text" />
+            <div>
+                <AddCard showAddCard={showAddCard} addingCard={addingCard} handleAddCard={handleAddCard} listId={listId} lastCardId={lastCardId} lastPosition={lastPosition} currentAddList={currentAddList} currentNewCardName={currentNewCardName} handleCardChange={handleCardChange}/>
             </div>
         </div>
     )
