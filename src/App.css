@@ -479,3 +479,12 @@ body {
         margin: 0;
     }
 }
+
+/* Board Modal */
+
+.board-modal-menu-container {
+  width: 339px;
+  background-color: #fff;
+  float: right;
+}
+

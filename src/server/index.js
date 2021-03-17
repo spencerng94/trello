@@ -21,7 +21,11 @@ const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongo
 
 
 
-mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
+// mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
+//     useNewUrlParser: true
+// });
+
+mongoose.connect( "mongodb://localhost/trello", {
     useNewUrlParser: true
 });
 

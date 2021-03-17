@@ -11,6 +11,7 @@ const NavBar = () => {
 			<input type="search" class="board-search-input" aria-label="Board Search"/>
 			<i class="fas fa-search search-icon" aria-hidden="true"></i>
 		</div>
+
 	</div>
 	<div class="logo">
 		<h1><i class="fab fa-trello logo-icon" aria-hidden="true"></i>Trello</h1>

@@ -8,7 +8,7 @@ import Lists from './components/Lists.jsx';
 import { getLists, getCards } from './redux/actions/getActions.js';
 import { deleteList, addList, editList, addCard, deleteCard, editCard } from './redux/actions/changeActions.js';
 import store from './redux/store/index.js';
-import unsubscribe from './redux/store/index.js';
+import Modal from './components/menuModal.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,7 +25,8 @@ class App extends React.Component {
       currentNewListName: '',
       currentEditCard: 0,
       currentEditCardName: '',
-      currentEditCardList: 0
+      currentEditCardList: 0,
+      showModal: false
     };
     this.onGetCards = this.onGetCards.bind(this);
     this.onGetLists = this.onGetLists.bind(this);
@@ -40,6 +41,7 @@ class App extends React.Component {
     this.showAddCard = this.showAddCard.bind(this);
     this.handleCardChange = this.handleCardChange.bind(this);
     this.handleListChange = this.handleListChange.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   onGetCards() {
@@ -108,6 +110,12 @@ class App extends React.Component {
     })
   }
 
+  handleModal() {
+    this.setState({
+      showModal: true
+    })
+  }
+
   componentDidMount() {
     this.onGetLists();
     this.onGetCards();
@@ -119,8 +127,9 @@ class App extends React.Component {
     return (
         <div className="App">
             <NavBar/>
-            <BoardHeader/>
+            <BoardHeader handleModal={this.handleModal}/>
             <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList} handleAddCard={this.handleAddCard} handleDeleteCard={this.handleDeleteCard} handleEditCard={this.handleEditCard} editingList={this.state.editingList} showEditList={this.showEditList} showEditCard={this.showEditCard} editingCard={this.state.editingCard} addingCard={this.state.addingCard} showAddCard={this.showAddCard} currentAddList={this.state.currentAddList} currentNewCardName={this.state.currentNewCardName} handleCardChange={this.handleCardChange} currentEditList={this.state.currentEditList} handleListChange={this.handleListChange} currentNewListName={this.state.currentNewListName} currentEditCardList={this.state.currentEditCardList} currentEditCard={this.state.currentEditCard}/>
+            {/* <Modal showModal={this.state.showModal}/> */}
         </div>
     );
   }
@@ -129,13 +138,5 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return state;
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getLists: () => { dispatch({type: 'GET_LISTS'})},
-    getCards: () => { dispatch({type: 'GET_CARDS'})},
-    // deleteCard: (cardId, listId) => { dispatch({type: 'DELETE_CARD'})}
-  }
-}
 
 export default connect(mapStateToProps, { getLists, deleteList, addList, editList, getCards, addCard, deleteCard, editCard })(App);

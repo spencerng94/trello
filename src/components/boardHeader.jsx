@@ -1,6 +1,7 @@
 import react from 'react';
 
-const BoardHeader = () => {
+const BoardHeader = (props) => {
+    let {handleModal} = props;
 
     return (
        <div>
@@ -21,6 +22,7 @@ const BoardHeader = () => {
           </div>
 
           <button class="menu-btn btn"><i class="fas fa-ellipsis-h menu-btn-icon" aria-hidden="true"></i>Show Menu</button>
+      
 
           </section>
        </div>
