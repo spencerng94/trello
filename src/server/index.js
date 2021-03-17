@@ -23,7 +23,7 @@ const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongo
 app.use(express.static(path.join(__dirname, "build")));
 
 // This route serves the React app
-app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, "build", "index.html")));
+app.get('../../', (req, res) => res.sendFile(path.resolve(__dirname, "build", "index.html")));
 
 
 // For production
