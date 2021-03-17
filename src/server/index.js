@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-// const db = require('../database/index.js');
+const credentials = require('../database/credentials.js');
 const cors = require('cors')
 
 const List = require('../database/models/listSchema.js');
@@ -17,7 +17,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/trello");
+const mongoDBURI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority`
+
+
+
+mongoose.connect(mongoDBURI || "mongodb://localhost/trello", {
+    useNewUrlParser: true
+});
 
 // app.use(express.static('App.js'))
 app.set('port', PORT)

@@ -6,7 +6,8 @@ const Card = require('./models/cardSchema.js');
 
 async function seedListsDB() {
     // Connection URL
-    const uri = 'mongodb://localhost:27017/trello';
+    // const uri = 'mongodb://localhost:27017/trello';
+    const uri = 'mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mongodb.net/trello?retryWrites=true&w=majority';
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
         // useUnifiedTopology: true,
@@ -42,8 +43,9 @@ async function seedListsDB() {
             console.log(list);
             // Add the newly created list to the lists array
             listArray.push(list);
+            collection.insertOne(list);
+            // collection.insertMany(listArray);
         }
-        collection.insertMany(listArray);
 
         for (let j = 1; j < 4; j++) {
             let cardName = 'Task';
