@@ -7,7 +7,7 @@ export const deleteList = (listId) => dispatch => {
     let data = ({
         list_id: listId
     })
-    axios.delete(`http://127.0.0.1:3001/api/lists/${listId}`, { params: data })
+    axios.delete(`http://localhost:3001/api/lists/${listId}`, { params: data })
         .then(data => {
             dispatch({
                 type: DELETE_LIST,
@@ -28,7 +28,7 @@ export const addList = (newListId) => dispatch => {
     let data = ({
         listId: newListId
     })
-    axios.post(`http://127.0.0.1:3001/api/lists/${newListId}`, { params: data })
+    axios.post(`http://localhost:3001/api/lists/${newListId}`, { params: data })
         .then(data => {
             dispatch({
                 type: POST_LIST,
@@ -50,7 +50,7 @@ export const editList = (listId, newName) => dispatch => {
         listTitle: newName
     })
 
-    axios.patch(`http://127.0.0.1:3001/api/lists/${listId}`, data)
+    axios.patch(`http://localhost:3001/api/lists/${listId}`, data)
     .then(data => {
         dispatch({
             type: UPDATE_LIST,
@@ -75,8 +75,8 @@ export const addCard = (listId, lastCardId, lastPosition, newCardName) => dispat
         position: lastPosition + 1
     })
     console.log(data, 'line 85')
-    // axios({method: 'delete', url: `http://127.0.0.1:3001/api/lists`, data: listId})
-    axios.post(`http://127.0.0.1:3001/api/cards/${listId}`, { params: data })
+    // axios({method: 'delete', url: `http://localhost:3001/api/lists`, data: listId})
+    axios.post(`http://localhost:3001/api/cards/${listId}`, { params: data })
         .then(data => {
             dispatch({
                 type: POST_CARD,
@@ -98,7 +98,7 @@ export const deleteCard = (cardId, listId) => dispatch => {
         cardId: cardId
     })
     console.log(data, 'line 109')
-    axios.delete(`http://127.0.0.1:3001/api/cards/${cardId}`, { params: data })
+    axios.delete(`http://localhost:3001/api/cards/${cardId}`, { params: data })
         .then(data => {
             console.log(data, 'deleteCard line 112');
             dispatch({
@@ -124,7 +124,7 @@ export const editCard = (cardId, listId, newCardTitle) => dispatch => {
         cardTitle: newCardTitle
     })
 
-    axios.patch(`http://127.0.0.1:3001/api/cards/${cardId}`, data)
+    axios.patch(`http://localhost:3001/api/cards/${cardId}`, data)
     .then(data => {
         console.log(data, 'editCard line 137');
         dispatch({

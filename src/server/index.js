@@ -11,6 +11,7 @@ const { ObjectID } = require('bson');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+app.set('port', PORT)
 
 app.use(cors({ origin: true }));
 
@@ -22,9 +23,13 @@ const MONGODB_URI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mong
 const uri = process.env.MONGODB_URI;
 
 // For production
-mongoose.connect(uri, {
-    useNewUrlParser: true
-});
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Connected to database')
+}).catch((err) => 
+    console.log(err, 'error connecting to db'));
 app.use(express.static(path.join(__dirname, '../../build')));
 
 // For development
@@ -34,9 +39,6 @@ app.use(express.static(path.join(__dirname, '../../build')));
 // app.use(express.static("public"));
 
 // app.use(express.static('App.js'))
-
-
-app.set('port', PORT)
 
 
 // Get All Lists
