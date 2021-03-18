@@ -22,6 +22,10 @@ const MONGODB_URI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mong
 
 const uri = process.env.MONGODB_URI;
 
+const production  = 'https://trello-board-app.herokuapp.com/';
+const development = 'http://localhost:3001';
+const baseUrl = (process.env.NODE_ENV ? production : development);
+
 // For production
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
@@ -214,3 +218,6 @@ app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 });
 
+module.exports = {
+    baseUrl
+}
