@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const credentials = require('../database/credentials.js');
 const cors = require('cors')
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const List = require('../database/models/listSchema.js');
 const Card = require('../database/models/cardSchema.js');
@@ -22,9 +23,15 @@ const MONGODB_URI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mong
 
 const uri = process.env.MONGODB_URI;
 
-const production  = 'https://trello-board-app.herokuapp.com/';
-const development = 'http://localhost:3001';
-const baseUrl = (process.env.NODE_ENV ? production : development);
+// const production  = 'https://trello-board-app.herokuapp.com/';
+// const development = 'http://localhost:3001';
+// const baseUrl = (process.env.NODE_ENV ? production : development);
+
+// if (process.env.NODE_ENV === "production") {
+//     app.get("*", (req, res) => {
+//       res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
+//     });
+// } 
 
 // For production
 mongoose.connect(MONGODB_URI, {
@@ -34,7 +41,6 @@ mongoose.connect(MONGODB_URI, {
     console.log('Connected to database')
 }).catch((err) => 
     console.log(err, 'error connecting to db'));
-app.use(express.static(path.join(__dirname, '../../build')));
 
 // For development
 // mongoose.connect( "mongodb://localhost/trello", {
@@ -43,6 +49,7 @@ app.use(express.static(path.join(__dirname, '../../build')));
 // app.use(express.static("public"));
 
 // app.use(express.static('App.js'))
+app.use(express.static(path.join(__dirname, '../../build')));
 
 
 // Get All Lists
@@ -218,6 +225,9 @@ app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 });
 
-module.exports = {
-    baseUrl
+
+module.exports = (app) => {
+    app.use(createProxyMiddleware('/api',
+    { target: 'http://localhost:3001/' 
+    }));
 }

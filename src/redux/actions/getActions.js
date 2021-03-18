@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_LISTS, GET_CARDS, GET_ERRORS } from './index.js';
 import store from '../store/index.js';
-import baseUrl from '../../server/index.js';
+
 
 export const getLists = () => dispatch => {
     axios.get(`http://localhost:3001/api/lists`)
