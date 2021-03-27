@@ -74,7 +74,8 @@ mongoose.connect(uri, {
 //     useNewUrlParser: true
 // });
 
-app.use(express.static('App.js'))
+// app.use(express.static('App.js'))
+
 // app.use(express.static(path.join(__dirname, '../../build')));
 
 app.use("/", routes);
