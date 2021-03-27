@@ -32,7 +32,7 @@ const uri = process.env.MONGODB_URI;
 // For production
 if (process.env.NODE_ENV === "production") {
     // Connect to Mongo
-    mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/trello", {
+    mongoose.connect(MONGODB_URI || "mongodb://localhost/trello", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
