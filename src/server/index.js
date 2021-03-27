@@ -29,10 +29,27 @@ const MONGODB_URI = `mongodb+srv://spencer-2:vcAkCsQyQzH92uM@cluster0.ahwfc.mong
 
 const uri = process.env.MONGODB_URI;
 
+// // For production
+// if (process.env.NODE_ENV === "production") {
+//     // Connect to Mongo
+//     mongoose.connect(MONGODB_URI || "mongodb://localhost/trello", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }).then(() => {
+//     console.log('Connected to database')
+// }).catch((err) => 
+//     console.log(err, 'error connecting to db'));
+
+//     // Use static build files
+//     app.use(express.static('../../build'))
+//     app.get("*", (req, res) => {
+//       res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
+//     });
+// } 
+
 // For production
-if (process.env.NODE_ENV === "production") {
     // Connect to Mongo
-    mongoose.connect(MONGODB_URI || "mongodb://localhost/trello", {
+mongoose.connect(MONGODB_URI || "mongodb://localhost/trello", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -44,8 +61,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static('../../build'))
     app.get("*", (req, res) => {
       res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
-    });
-} 
+});
+ 
 
 // For development (local db)
 // mongoose.connect( "mongodb://localhost/trello", {
