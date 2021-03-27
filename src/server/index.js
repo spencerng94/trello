@@ -49,7 +49,7 @@ const uri = process.env.MONGODB_URI;
 
 // For production
     // Connect to Mongo
-mongoose.connect(MONGODB_URI || "mongodb://localhost/trello", {
+mongoose.connect(uri || "mongodb://localhost/trello", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
