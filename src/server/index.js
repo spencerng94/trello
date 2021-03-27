@@ -8,8 +8,6 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const routes = require('./routes.js');
 
-const { ObjectID } = require('bson');
-
 const app = express();
 
 const PORT = process.env.PORT || 3001;
