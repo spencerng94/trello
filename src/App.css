@@ -79,7 +79,7 @@ body {
 }
 
 .bg-wrapper {
-  background-image: url('./trello-background.jpeg');
+  background-image: url('https://trello-board-app.s3-us-west-1.amazonaws.com/background/trello-background.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center; 
