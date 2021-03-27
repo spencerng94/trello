@@ -54,15 +54,15 @@ mongoose.connect(uri, {
     useUnifiedTopology: true
 }).then(() => {
     console.log('Connected to database')
-}).catch((err) => 
-    console.log(err, 'error connecting to db'));
-
-    // Use static build files
-    app.use(express.static('../../build'))
-    app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
+}).catch((err) => {
+    console.log(err, 'error connecting to db');
 });
  
+// Use static build files
+app.use(express.static('../../build'))
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
+};
 
 // For development (local db)
 // mongoose.connect( "mongodb://localhost/trello", {
