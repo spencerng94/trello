@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-image: url('./trello-background.jpeg');
+  background-image: url('https://trello-board-app.s3-us-west-1.amazonaws.com/background/trello-background.jpeg');
   position: fixed;
   min-width: 100%;
   min-height: 100%;
