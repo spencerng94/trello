@@ -7,7 +7,7 @@ const cors = require('cors')
 const path = require('path');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const routes = require('./routes.js');
+const router = require('./routes.js');
 
 const { ObjectID } = require('bson');
 
@@ -77,7 +77,7 @@ app.get("*", (req, res) => {
 
 // app.use(express.static(path.join(__dirname, '../../build')));
 
-app.use("/", routes);
+app.use("/", router);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
