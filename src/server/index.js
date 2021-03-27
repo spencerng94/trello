@@ -59,9 +59,9 @@ mongoose.connect(uri || MONGODB_URI, {
  
 // Use static build files
 app.use(express.static('../../build'))
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
+});
 
 // For development (local db)
 // mongoose.connect( "mongodb://localhost/trello", {
