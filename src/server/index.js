@@ -14,7 +14,6 @@ const { ObjectID } = require('bson');
 const app = express();
 const router = express.Router();
 
-const inProduction = process.env.NODE_ENV === "production";
 const PORT = process.env.PORT || 3001;
 
 app.set('port', PORT)
@@ -49,7 +48,7 @@ const uri = process.env.MONGODB_URI;
 
 // For production
     // Connect to Mongo
-mongoose.connect(uri, {
+mongoose.connect(uri || MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -60,9 +59,9 @@ mongoose.connect(uri, {
  
 // Use static build files
 app.use(express.static('../../build'))
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
-};
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
+// });
 
 // For development (local db)
 // mongoose.connect( "mongodb://localhost/trello", {

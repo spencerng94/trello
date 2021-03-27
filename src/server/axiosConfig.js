@@ -4,10 +4,9 @@ import axios from "axios";
 // the baseURL should to point to localhost in development
 // and your domain in production
 const app = axios.create({
-  // baseURL: process.env.NODE_ENV === inDevelopment
-  //   ? `http://localhost:5000/api/`
-  //   : "http://example.com",
-  baseURL: "http://localhost:3001/"
+  baseURL: process.env.NODE_ENV === 'production'
+    ? "http://heroku-board-app.com"
+    : "http://localhost:3001/" 
 });
 
 // axios consumes rejected API responses by default,
