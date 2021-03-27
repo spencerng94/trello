@@ -11,7 +11,7 @@ import axios from "axios";
 
 // Production URL
 const app = axios.create({
-    baseURL: "http://heroku-board-app.com"
+    baseURL: "https://heroku-board-app.com"
 });
 
 // axios consumes rejected API responses by default,
