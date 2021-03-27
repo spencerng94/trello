@@ -12,7 +12,6 @@ const router = require('./routes.js');
 const { ObjectID } = require('bson');
 
 const app = express();
-const router = express.Router();
 
 const PORT = process.env.PORT || 3001;
 
