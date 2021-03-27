@@ -44,7 +44,7 @@
     "seed": "node src/database/seed.js",
     "startServer": "nodemon src/server/index.js",
     "dev": "nodemon — exec babel-node index.js",
-    "postinstall": "npm run build"
+    "heroku-postbuild": "npm install && npm run build"
   },
   "eslintConfig": {
     "extends": [
