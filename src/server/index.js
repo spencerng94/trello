@@ -2,12 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const credentials = require('../database/credentials.js');
 const cors = require('cors')
 const path = require('path');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const router = require('./routes.js');
+const routes = require('./routes.js');
 
 const { ObjectID } = require('bson');
 
@@ -76,7 +75,7 @@ app.get("*", (req, res) => {
 
 // app.use(express.static(path.join(__dirname, '../../build')));
 
-app.use("/", router);
+app.use("/", routes);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
