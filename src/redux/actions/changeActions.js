@@ -1,4 +1,5 @@
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../server/axiosConfig.js';
 import { DELETE_LIST, POST_LIST, UPDATE_LIST, POST_CARD, DELETE_CARD, UPDATE_CARD } from './index.js';
 import { getLists, getCards } from './getActions.js';
 import { GET_ERRORS } from './index.js';

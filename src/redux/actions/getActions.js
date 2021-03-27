@@ -1,10 +1,10 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { GET_LISTS, GET_CARDS, GET_ERRORS } from './index.js';
 import store from '../store/index.js';
-
+import axios from '../../server/axiosConfig.js';
 
 export const getLists = () => dispatch => {
-    axios.get(`http://localhost:3001/api/lists`)
+    axios.get(`/lists`)
         .then((res) => {
             let listsArray = [];
             for (let i = 0; i < res.data.length; i++) {
@@ -28,7 +28,7 @@ export const getLists = () => dispatch => {
 }
 
 export const getCards = () => dispatch => {
-    axios.get(`http://localhost:3001/api/cards/`)
+    axios.get(`/cards`)
         .then(res => {
             console.log('res from getCards:', res.data);
             let cardsArray = [];
