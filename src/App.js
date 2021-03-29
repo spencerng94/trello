@@ -129,7 +129,6 @@ class App extends React.Component {
             <NavBar/>
             <BoardHeader handleModal={this.handleModal}/>
             <Lists lists={lists} handleDeleteList={this.handleDeleteList} handleAddList={this.handleAddList} handleEditList={this.handleEditList} handleAddCard={this.handleAddCard} handleDeleteCard={this.handleDeleteCard} handleEditCard={this.handleEditCard} editingList={this.state.editingList} showEditList={this.showEditList} showEditCard={this.showEditCard} editingCard={this.state.editingCard} addingCard={this.state.addingCard} showAddCard={this.showAddCard} currentAddList={this.state.currentAddList} currentNewCardName={this.state.currentNewCardName} handleCardChange={this.handleCardChange} currentEditList={this.state.currentEditList} handleListChange={this.handleListChange} currentNewListName={this.state.currentNewListName} currentEditCardList={this.state.currentEditCardList} currentEditCard={this.state.currentEditCard}/>
-            {/* <Modal showModal={this.state.showModal}/> */}
         </div>
     );
   }

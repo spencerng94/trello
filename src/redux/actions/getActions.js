@@ -11,7 +11,7 @@ export const getLists = () => dispatch => {
                 let currentObject = {};
                 currentObject.list_id = res.data[i].list_id;
                 currentObject.list_name = res.data[i].list_name;
-                currentObject.position = res.data[i].position;
+                currentObject.position = res.data[i].positio n;
                 listsArray.push(currentObject);
             }
             dispatch({
