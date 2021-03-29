@@ -4,14 +4,14 @@ import store from '../store/index.js';
 import axios from '../../server/axiosConfig.js';
 
 export const getLists = () => dispatch => {
-    axios.get(`/lists`)
+    axios.get(`/lists`, {headers: {'Access-Control-Allow-Origin': '*'}})
         .then((res) => {
             let listsArray = [];
             for (let i = 0; i < res.data.length; i++) {
                 let currentObject = {};
                 currentObject.list_id = res.data[i].list_id;
                 currentObject.list_name = res.data[i].list_name;
-                currentObject.position = res.data[i].positio n;
+                currentObject.position = res.data[i].position;
                 listsArray.push(currentObject);
             }
             dispatch({
@@ -28,7 +28,7 @@ export const getLists = () => dispatch => {
 }
 
 export const getCards = () => dispatch => {
-    axios.get(`/cards`)
+    axios.get(`/cards`, {headers: {'Access-Control-Allow-Origin': '*'}})
         .then(res => {
             console.log('res from getCards:', res.data);
             let cardsArray = [];
