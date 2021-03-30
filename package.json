@@ -6,7 +6,8 @@
   "license": "MIT",
   "homepage": "https://trello-board-app.herokuapp.com",
   "engines": {
-    "node": "6.9.1"
+    "npm": "6.14.8",
+    "node": "12.19.0"
   },
   "dependencies": {
     "concurrently": "^4.0.1",
