@@ -4,7 +4,7 @@ const List = require('../database/models/listSchema.js');
 const Card = require('../database/models/cardSchema.js');
 
 // Get All Lists
-router.get("/lists", async (request, response) => {
+router.get("/api/lists", async (request, response) => {
     try {
         var result = await List.find();
         console.log('result from getLists:', result);
@@ -16,7 +16,7 @@ router.get("/lists", async (request, response) => {
 
 
 // Add List 
-router.post("/lists/:id", async (request, response) => {
+router.post("/api/lists/:id", async (request, response) => {
 
     let newId = parseInt(request.params.id);
 
@@ -37,7 +37,7 @@ router.post("/lists/:id", async (request, response) => {
 })
 
 // Delete List
-router.delete("/lists/:id", async (request, response) => {
+router.delete("/api/lists/:id", async (request, response) => {
 
     try {
         var result = await List.deleteOne({list_id: `${request.params.id}`}).exec();
@@ -51,7 +51,7 @@ router.delete("/lists/:id", async (request, response) => {
 });
 
 // Patch List Name
-router.patch("/lists/:id", async (request, response) => {
+router.patch("/api/lists/:id", async (request, response) => {
     let newName = request.body.listTitle;
     let currentId = request.body.listId;
 
@@ -75,7 +75,7 @@ router.patch("/lists/:id", async (request, response) => {
 
 
 // Get Cards
-router.get('/cards', async (req, res) => {
+router.get('/api/cards', async (req, res) => {
 
     try {
         var result = await List.aggregate([{
@@ -88,7 +88,7 @@ router.get('/cards', async (req, res) => {
 });
 
 // Add Card by List Id 
-router.post("/cards/:id", async (request, response) => {
+router.post("/api/cards/:id", async (request, response) => {
     let newId = new Card({
         card_id : request.body.params.cardId,
         list_id : request.body.params.listId,
@@ -116,7 +116,7 @@ router.post("/cards/:id", async (request, response) => {
 })
 
 // Delete Card by List Id and Card Id
-router.delete("/cards/:id", async (request, response) => {
+router.delete("/api/cards/:id", async (request, response) => {
     let deleteQuery = {
         "list_id": parseInt(request.query.listId),
     }
@@ -144,7 +144,7 @@ router.delete("/cards/:id", async (request, response) => {
 });
 
 // Patch Card Name
-router.patch("/cards/:id", async (request, response) => {
+router.patch("/api/cards/:id", async (request, response) => {
     let updateQuery = {
         "list_id": request.body.listId,
         "_cards.card_id": request.body.cardId

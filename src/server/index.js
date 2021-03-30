@@ -10,7 +10,7 @@ const routes = require('./routes.js');
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.set('port', PORT)
 
@@ -44,7 +44,7 @@ const uri = process.env.MONGODB_URI;
 
 // For production
     // Connect to Mongo
-mongoose.connect(uri || MONGODB_URI || 'mongodb://localhost/trello', {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -52,6 +52,13 @@ mongoose.connect(uri || MONGODB_URI || 'mongodb://localhost/trello', {
 }).catch((err) => {
     console.log(err, 'error connecting to db');
 });
+
+app.use("", routes);
+
+// For development (local db)
+// mongoose.connect( MONGODB_URI, {
+//     useUnifiedTopology: true 
+// });
  
 // Use static build files
 app.use(express.static('../../build'))
@@ -59,10 +66,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname,  "../../build", "index.html"));
 });
 
-// For development (local db)
-// mongoose.connect( "mongodb://localhost/trello", {
-//     useNewUrlParser: true
-// });
 
 // For development (Mongo db)
 // mongoose.connect( uri, {
@@ -70,10 +73,6 @@ app.get("*", (req, res) => {
 // });
 
 // app.use(express.static('App.js'))
-
-// app.use(express.static(path.join(__dirname, '../../build')));
-
-app.use("/", routes);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

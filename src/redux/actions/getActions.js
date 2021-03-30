@@ -4,7 +4,7 @@ import store from '../store/index.js';
 import axios from '../../server/axiosConfig.js';
 
 export const getLists = () => dispatch => {
-    axios.get(`/lists`, {headers: {'Access-Control-Allow-Origin': '*'}})
+    axios.get(`/api/lists`)
         .then((res) => {
             let listsArray = [];
             for (let i = 0; i < res.data.length; i++) {
@@ -28,7 +28,7 @@ export const getLists = () => dispatch => {
 }
 
 export const getCards = () => dispatch => {
-    axios.get(`/cards`, {headers: {'Access-Control-Allow-Origin': '*'}})
+    axios.get(`/api/cards`)
         .then(res => {
             console.log('res from getCards:', res.data);
             let cardsArray = [];
