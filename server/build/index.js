@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var path = require('path');
 
+const staticFiles = express.static(path.join(__dirname, '../../client/build'))
+app.use(staticFiles);
+
 var _require = require('http-proxy-middleware'),
     createProxyMiddleware = _require.createProxyMiddleware;
 
@@ -78,10 +81,12 @@ app.use("", routes);
 // });
 
 // Use static build files
-app.use(express.static('../../../build'));
-app.get("*", function (req, res) {
-    res.sendFile(path.resolve(__dirname, "../../../build", "index.html"));
-});
+// app.use(express.static('../../../build'));
+// app.get("*", function (req, res) {
+//     res.sendFile(path.resolve(__dirname, "../../../build", "index.html"));
+// });
+
+app.use('/*', staticFiles)
 
 // For development (Mongo db)
 // mongoose.connect( uri, {
