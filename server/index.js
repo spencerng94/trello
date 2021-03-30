@@ -10,9 +10,8 @@ const routes = require('./routes.js');
 
 const app = express();
 
-const PORT = process.env.PORT || 3001;
-
-app.set('port', PORT)
+const staticFiles = express.static(path.join(__dirname, '../../client/build'))
+app.use(staticFiles)
 
 var corsOptions = {
     origin: '*',
@@ -74,10 +73,12 @@ app.use("", routes);
 // });
  
 // Use static build files
-app.use(express.static('../../client/build'))
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname,  "../../client/build", "index.html"));
-});
+// app.use(express.static('../../client/build'))
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname,  "../../client/build", "index.html"));
+// });
+
+app.use('/*', staticFiles)
 
 
 // For development (Mongo db)
@@ -86,6 +87,10 @@ app.get("*", (req, res) => {
 // });
 
 // app.use(express.static('App.js'))
+
+const PORT = process.env.PORT || 3001;
+
+app.set('port', PORT)
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

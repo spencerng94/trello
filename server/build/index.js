@@ -17,10 +17,6 @@ var routes = require('./routes.js');
 
 var app = express();
 
-var PORT = process.env.PORT || 3001;
-
-app.set('port', PORT);
-
 var corsOptions = {
     origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
@@ -94,6 +90,10 @@ app.use('/*', staticFiles)
 // });
 
 // app.use(express.static('App.js'))
+
+var PORT = process.env.PORT || 3001;
+
+app.set('port', PORT);
 
 app.listen(PORT, function () {
     console.log('listening on port ' + PORT);
