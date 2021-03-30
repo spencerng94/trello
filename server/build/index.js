@@ -78,9 +78,9 @@ app.use("", routes);
 // });
 
 // Use static build files
-app.use(express.static('../../build'));
+app.use(express.static('../../../build'));
 app.get("*", function (req, res) {
-    res.sendFile(path.resolve(__dirname, "../../build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../../../build", "index.html"));
 });
 
 // For development (Mongo db)
