@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const List = require('../client/src/database/models/listSchema.js');
-const Card = require('../client/src/database/models/cardSchema.js');
+const List = require('./listSchema.js');
+const Card = require('./cardSchema.js');
 
 // Get All Lists
 router.get("/api/lists", async (request, response) => {
